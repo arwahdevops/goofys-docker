@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  fastapi-goofys:
+    privileged: true
+    devices:
+     - "/dev/fuse:/dev/fuse"
+    container_name: fastapi-goofys
+    build: .
+    volumes:
+      - backend-vol-development:/app
+    ports:
+      - 8081:8000
+    networks:
+      - environment-development
+    
+networks:
+  environment-development:
+    name: environment-development
+    external: true
+    
+volumes:
+  backend-vol-development:
+    name: backend-vol-development
+    external: true
